@@ -10,6 +10,7 @@ PROJECT_META = {
     'category': 'Natural Language Processing',
     'nav_group': 'Machine Learning',
     'tags': ['nlp', 'bart', 'textrank', 'extractive', 'abstractive'],
+    'screenshot': 'text_summarization.png',
 }
 
 bp = Blueprint(
