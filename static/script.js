@@ -51,9 +51,17 @@ async function summarize() {
     const minLength = document.getElementById('minLength').value;
 
     // Show loading
-    document.getElementById('loading').style.display = 'block';
+    const loadingEl = document.getElementById('loading');
+    loadingEl.style.display = 'block';
     document.getElementById('summaryOutput').textContent = 'Generating summary...';
     document.getElementById('metrics').style.display = 'none';
+
+    const startTime = Date.now();
+
+    function hideLoader() {
+        const remaining = Math.max(0, 2000 - (Date.now() - startTime));
+        setTimeout(() => { loadingEl.style.display = 'none'; }, remaining);
+    }
 
     try {
         const response = await fetch(apiUrl, {
@@ -91,7 +99,7 @@ async function summarize() {
         showError('Network error: ' + error.message);
         document.getElementById('summaryOutput').textContent = 'Error generating summary. Please try again.';
     } finally {
-        document.getElementById('loading').style.display = 'none';
+        hideLoader();
     }
 }
 

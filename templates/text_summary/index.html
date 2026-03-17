@@ -2,7 +2,17 @@
 
 {% block title %}Text Summarization - Zac Stryker{% endblock %}
 
-{% block head_extra %}<style>.back-link:hover { color: #8b5cf6; }</style>{% endblock %}
+{% block head_extra %}<style>
+/* ── Project accent tokens ────────────────────────────────────── */
+:root {
+    --project-accent:        #8b5cf6;
+    --project-accent-text:   #c4b5fd;
+    --project-accent-bg:     rgba(139, 92, 246, 0.08);
+    --project-accent-active: rgba(139, 92, 246, 0.15);
+    --project-accent-rim:    rgba(139, 92, 246, 0.25);
+}
+.back-link:hover { color: var(--project-accent-text); }
+</style>{% endblock %}
 
 {% block content %}
 <div class="page-text-summary">
@@ -14,7 +24,7 @@
         <h1>Text Summarization</h1>
         <a href="https://github.com/ZacStryker/text-summary" target="_blank" rel="noopener" class="project-repo-link" aria-label="View on GitHub"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
     </div>
-    <p class="subtitle">Transform long texts into concise summaries using advanced AI algorithms</p>
+    <p class="subtitle">Compare four text summarization methods &mdash; from sentence ranking to neural generation</p>
 </div>
 
 <div class="main-card">
@@ -70,14 +80,29 @@
     </div>
 
     <div id="loading" class="loading-indicator">
-        <div class="spinner"></div>
+        <div class="pac-loader"></div>
         <p>Generating summary...</p>
     </div>
 
     <div class="button-group">
-        <button class="btn-primary" onclick="summarize()">Generate Summary</button>
-        <button class="btn-secondary" onclick="clearText()">Clear</button>
-        <button class="btn-success" onclick="downloadSummary()" id="downloadBtn" disabled>Download Summary</button>
+        <button class="btn-primary action-btn" onclick="summarize()">
+            <span class="action-btn-inner">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Generate Summary
+            </span>
+        </button>
+        <button class="btn-secondary action-btn secondary" onclick="clearText()">
+            <span class="action-btn-inner">
+                <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+                Clear
+            </span>
+        </button>
+        <button class="btn-success action-btn success" onclick="downloadSummary()" id="downloadBtn" disabled>
+            <span class="action-btn-inner">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Summary
+            </span>
+        </button>
     </div>
 
     <div class="metrics" id="metrics">
